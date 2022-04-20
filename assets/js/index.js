@@ -14,6 +14,7 @@ $(function () {
         });
     })
 })
+// 函数得放在入口函数之外，因为其他窗口也需要调用以下函数
 function getUserInfo() {
     $.ajax({
         method: 'GET',
@@ -47,18 +48,22 @@ function getUserInfo() {
 // 渲染用户头像
 function renderAvatar(user) {
     // 1、设置用户昵称
-    const name = user.username || user.nickname
+    const name = user.nickname || user.username
     // 2、设置欢迎的文本
     $('#welcome').html('欢迎&nbsp;&nbsp;' + name)
     //3、 按需渲染头像
     if (user.user_pic !== null) {
         // 渲染图片头像
-        $('.layui-nav-img').attr('src', user.user_pic).show()
-        $('text-avatar').hide()
+        // console.log('1')
+        $('.layui-nav-img')
+            .attr('src', user.user_pic)
+            .show()
+        $('.text-avatar').hide()
     }
     else {
+        // console.log('2')
         $('.layui-nav-img').hide()
         const first = name[0].toUpperCase()
-        $('text-avatar').html(first).show()
+        $('.text-avatar').html(first).show()
     }
 }

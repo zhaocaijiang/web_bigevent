@@ -16,7 +16,7 @@ $.ajaxPrefilter(function (options) {
 
     // 全局统一挂载complete函数,防止每次访问都要挂载
     options.complete = function (res) {
-        console.log(res)
+        // console.log(res)
         // responseJSON可以得到后台响应回来的数据
         if (res.responseJSON.status === 1 || res.responseJSON.message === '身份认证失败！') {
             // 清空token

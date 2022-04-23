@@ -4,7 +4,11 @@
 $.ajaxPrefilter(function (options) {
     // console.log(options.url)
     // 在发起真正的Ajax请求时，统一拼接接口的根路径
-    options.url = 'http://www.liulongbin.top:3007' + options.url
+    // options.url = 'http://www.liulongbin.top:3007' + options.url
+    // 俩个接口都没问题,只是data-id属性值换了行
+    // options.url = 'http://www.liulongbin.top:3008' + options.url
+    // options.url = 'http://api-breakingnews-web.itheima.net' + options.url
+    options.url = 'http://api-breakingnews-web.itheima.net' + options.url
     // console.log(options.url)
 
     // 统一为有权限的接口，配置header对象
@@ -21,8 +25,9 @@ $.ajaxPrefilter(function (options) {
         if (res.responseJSON.status === 1 || res.responseJSON.message === '身份认证失败！') {
             // 清空token
             localStorage.removeItem('token')
-            // 跳转到登录页
+            // // 跳转到登录页
             location.href = '/login.html'
+            // console.log('comlete函数 身份认证失败')
         }
     }
 })
